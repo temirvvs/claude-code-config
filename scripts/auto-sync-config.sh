@@ -3,7 +3,7 @@
 set -u
 cd ~/.claude || exit 0
 
-git add settings.json CLAUDE.md README.md scripts/auto-sync-config.sh 2>/dev/null
+git add settings.json CLAUDE.md README.md scripts/ commands/ 2>/dev/null
 
 if git diff --cached --quiet 2>/dev/null; then
   exit 0

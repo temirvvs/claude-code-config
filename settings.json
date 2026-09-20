@@ -43,7 +43,8 @@
     "voltagent-domains@voltagent-subagents": true,
     "voltagent-biz@voltagent-subagents": true,
     "voltagent-meta@voltagent-subagents": true,
-    "voltagent-research@voltagent-subagents": true
+    "voltagent-research@voltagent-subagents": true,
+    "agentcairn@agentcairn": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -80,6 +81,12 @@
       "source": {
         "source": "github",
         "repo": "VoltAgent/awesome-claude-code-subagents"
+      }
+    },
+    "agentcairn": {
+      "source": {
+        "source": "github",
+        "repo": "ccf/agentcairn"
       }
     }
   }
