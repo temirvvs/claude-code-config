@@ -1,0 +1,17 @@
+plugins/
+skills/
+projects/
+cache/
+backups/
+sessions/
+session-env/
+shell-snapshots/
+jobs/
+daemon/
+file-history/
+chrome/
+history.jsonl
+daemon.log
+mcp-needs-auth-cache.json
+.last-cleanup
+.ponytail-*

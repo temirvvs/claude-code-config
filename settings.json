@@ -1,0 +1,25 @@
+{
+  "enabledPlugins": {
+    "warp@claude-code-warp": true,
+    "superpowers@claude-plugins-official": true,
+    "supabase@claude-plugins-official": true,
+    "ponytail@ponytail": true,
+    "cloudflare@claude-plugins-official": true,
+    "stripe@claude-plugins-official": true,
+    "chrome-devtools-mcp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  }
+}
