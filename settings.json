@@ -32,7 +32,8 @@
     "stripe@claude-plugins-official": true,
     "chrome-devtools-mcp@claude-plugins-official": true,
     "rampstack-starter@rampstack": true,
-    "agent-skills@addy-agent-skills": true
+    "agent-skills@addy-agent-skills": true,
+    "fullstack-dev-skills@fullstack-dev-skills": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -57,6 +58,12 @@
       "source": {
         "source": "github",
         "repo": "addyosmani/agent-skills"
+      }
+    },
+    "fullstack-dev-skills": {
+      "source": {
+        "source": "github",
+        "repo": "Jeffallan/claude-skills"
       }
     }
   }
