@@ -4,7 +4,7 @@ My `~/.claude` config, synced across machines.
 
 ## What's tracked
 
-- `settings.json` — enabled plugins + marketplace sources
+- `settings.json` — enabled plugins + marketplace sources, default permission mode (`auto`)
 - `CLAUDE.md` — global user instructions
 - `scripts/auto-sync-config.sh` — the auto-sync script below
 - `commands/` — custom slash commands (e.g. `/techdebt`)

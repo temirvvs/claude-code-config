@@ -33,7 +33,7 @@
     "chrome-devtools-mcp@claude-plugins-official": true,
     "rampstack-starter@rampstack": true,
     "agent-skills@addy-agent-skills": true,
-    "fullstack-dev-skills@fullstack-dev-skills": true,
+    "fullstack-dev-skills@fullstack-dev-skills": false,
     "voltagent-core-dev@voltagent-subagents": true,
     "voltagent-lang@voltagent-subagents": true,
     "voltagent-infra@voltagent-subagents": true,
@@ -117,5 +117,8 @@
         "repo": "EveryInc/compound-engineering-plugin"
       }
     }
+  },
+  "permissions": {
+    "defaultMode": "auto"
   }
 }
