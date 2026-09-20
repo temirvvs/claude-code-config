@@ -26,6 +26,10 @@ cross-project habit: in every project worked on (not just this one), keep a `not
 directory updated after every PR, and point that project's own `CLAUDE.md` at it so
 future sessions pick it up without being re-told.
 
+It also carries a full prose-style guide (adapted from [andrewroxby/claude-style-patch](https://github.com/andrewroxby/claude-style-patch))
+governing how responses are written: plain declarative sentences, no colon-hinged
+sentences, no announcing a point before making it, no stacked compression.
+
 ## Set up on a new machine
 
 ```sh

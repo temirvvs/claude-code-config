@@ -44,7 +44,11 @@
     "voltagent-biz@voltagent-subagents": true,
     "voltagent-meta@voltagent-subagents": true,
     "voltagent-research@voltagent-subagents": true,
-    "agentcairn@agentcairn": true
+    "agentcairn@agentcairn": true,
+    "avoid-ai-writing@conorbronsdon-skills": true,
+    "web-animation-skills@web-animation-skills": true,
+    "motion-design-skills@motion-design-skills": true,
+    "compound-engineering@compound-engineering-plugin": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -87,6 +91,30 @@
       "source": {
         "source": "github",
         "repo": "ccf/agentcairn"
+      }
+    },
+    "conorbronsdon-skills": {
+      "source": {
+        "source": "github",
+        "repo": "conorbronsdon/avoid-ai-writing"
+      }
+    },
+    "web-animation-skills": {
+      "source": {
+        "source": "github",
+        "repo": "iart-ai/web-animation-skills"
+      }
+    },
+    "motion-design-skills": {
+      "source": {
+        "source": "github",
+        "repo": "iart-ai/motion-design-skills"
+      }
+    },
+    "compound-engineering-plugin": {
+      "source": {
+        "source": "github",
+        "repo": "EveryInc/compound-engineering-plugin"
       }
     }
   }
