@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -118,7 +121,11 @@
       }
     }
   },
-  "permissions": {
-    "defaultMode": "auto"
+  "pluginConfigs": {
+    "agentcairn@agentcairn": {
+      "options": {
+        "vault_path": "~/claude/agentcairn"
+      }
+    }
   }
 }

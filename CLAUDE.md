@@ -6,7 +6,7 @@ Before installing any skill, plugin, or tool, anywhere, not just from this repo:
 
 Keep the running install log up to date: https://claude.ai/code/artifact/92a00a36-9672-4392-abdb-0b23cd85604d. It lists only things actually installed, what they are, their source, and what they do. Items that were reviewed and rejected don't belong in it.
 
-In every project repo you work in (not just this one): maintain a `notes/` directory and keep it updated after every PR, in that project's own words about what changed and why. If that project's own `CLAUDE.md` doesn't already point at it, add a line there saying notes live in `notes/` and should be kept current, so any future session finds them without being told again.
+In every project repo you work in (not just this one): maintain a `notes/` directory and keep it updated after every PR, in that project's own words about what changed and why. If that project's own `CLAUDE.md` doesn't already point at it, add a line there saying notes live in `notes/` and should be kept current, so any future session finds them without being told again. This repo keeps session/ephemeral config notes in `notes/`; keep them current after each PR or significant config change.
 
 ---
 
