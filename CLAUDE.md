@@ -8,6 +8,8 @@ Keep the running install log up to date: https://claude.ai/code/artifact/92a00a3
 
 In every project repo you work in (not just this one): maintain a `notes/` directory and keep it updated after every PR, in that project's own words about what changed and why. If that project's own `CLAUDE.md` doesn't already point at it, add a line there saying notes live in `notes/` and should be kept current, so any future session finds them without being told again. This repo keeps session/ephemeral config notes in `notes/`; keep them current after each PR or significant config change.
 
+After a change in any project repo, check whether that project's own `CLAUDE.md` needs updating so it stays accurate — new conventions, decisions that override what's written, or structure the file describes that no longer matches reality. Update it only when skipping the update would leave the file wrong or misleading; making a change is not by itself a reason to touch it. Don't pad it with anything a future session could reconstruct just by reading the code.
+
 ---
 
 # Response Style

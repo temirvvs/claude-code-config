@@ -2,6 +2,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "skillOverrides": {},
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -28,30 +29,10 @@
   },
   "enabledPlugins": {
     "warp@claude-code-warp": true,
-    "superpowers@claude-plugins-official": true,
-    "supabase@claude-plugins-official": false,
     "ponytail@ponytail": true,
-    "cloudflare@claude-plugins-official": false,
     "stripe@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": false,
-    "rampstack-starter@rampstack": false,
     "agent-skills@addy-agent-skills": true,
-    "fullstack-dev-skills@fullstack-dev-skills": false,
-    "voltagent-core-dev@voltagent-subagents": false,
-    "voltagent-lang@voltagent-subagents": false,
-    "voltagent-infra@voltagent-subagents": false,
-    "voltagent-qa-sec@voltagent-subagents": false,
-    "voltagent-data-ai@voltagent-subagents": false,
-    "voltagent-dev-exp@voltagent-subagents": false,
-    "voltagent-domains@voltagent-subagents": false,
-    "voltagent-biz@voltagent-subagents": false,
-    "voltagent-meta@voltagent-subagents": false,
-    "voltagent-research@voltagent-subagents": false,
-    "agentcairn@agentcairn": true,
-    "avoid-ai-writing@conorbronsdon-skills": false,
-    "web-animation-skills@web-animation-skills": false,
-    "motion-design-skills@motion-design-skills": false,
-    "compound-engineering@compound-engineering-plugin": false
+    "agentcairn@agentcairn": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -66,58 +47,16 @@
         "repo": "DietrichGebert/ponytail"
       }
     },
-    "rampstack": {
-      "source": {
-        "source": "github",
-        "repo": "rampstackco/claude-skills"
-      }
-    },
     "addy-agent-skills": {
       "source": {
         "source": "github",
         "repo": "addyosmani/agent-skills"
       }
     },
-    "fullstack-dev-skills": {
-      "source": {
-        "source": "github",
-        "repo": "Jeffallan/claude-skills"
-      }
-    },
-    "voltagent-subagents": {
-      "source": {
-        "source": "github",
-        "repo": "VoltAgent/awesome-claude-code-subagents"
-      }
-    },
     "agentcairn": {
       "source": {
         "source": "github",
         "repo": "ccf/agentcairn"
-      }
-    },
-    "conorbronsdon-skills": {
-      "source": {
-        "source": "github",
-        "repo": "conorbronsdon/avoid-ai-writing"
-      }
-    },
-    "web-animation-skills": {
-      "source": {
-        "source": "github",
-        "repo": "iart-ai/web-animation-skills"
-      }
-    },
-    "motion-design-skills": {
-      "source": {
-        "source": "github",
-        "repo": "iart-ai/motion-design-skills"
-      }
-    },
-    "compound-engineering-plugin": {
-      "source": {
-        "source": "github",
-        "repo": "EveryInc/compound-engineering-plugin"
       }
     }
   },
@@ -127,10 +66,5 @@
         "vault_path": "~/claude/agentcairn"
       }
     }
-  },
-  "skillOverrides": {
-    "anydesign": "off",
-    "naming": "off",
-    "terminal-title": "off"
   }
 }

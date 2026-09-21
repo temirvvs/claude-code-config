@@ -24,7 +24,10 @@ failed push (e.g. offline) just warns — it never blocks the session.
 Besides this repo's own auto-sync and install-review rules, `CLAUDE.md` also carries a
 cross-project habit: in every project worked on (not just this one), keep a `notes/`
 directory updated after every PR, and point that project's own `CLAUDE.md` at it so
-future sessions pick it up without being re-told.
+future sessions pick it up without being re-told. It also carries a matching rule for
+that project's `CLAUDE.md` itself: after a change, check whether the file needs
+updating to stay accurate, and only touch it when skipping the update would leave it
+wrong — not on every change, and never just to restate what the code already shows.
 
 It also carries a full prose-style guide (adapted from [andrewroxby/claude-style-patch](https://github.com/andrewroxby/claude-style-patch))
 governing how responses are written: plain declarative sentences, no colon-hinged
