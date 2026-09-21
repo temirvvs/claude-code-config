@@ -4,16 +4,6 @@
   },
   "skillOverrides": {},
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/skills/terminal-title/hooks/set-title-hook.sh"
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "hooks": [
