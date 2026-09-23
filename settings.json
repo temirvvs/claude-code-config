@@ -21,8 +21,7 @@
     "warp@claude-code-warp": true,
     "ponytail@ponytail": true,
     "stripe@claude-plugins-official": true,
-    "agent-skills@addy-agent-skills": true,
-    "agentcairn@agentcairn": true
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -41,19 +40,6 @@
       "source": {
         "source": "github",
         "repo": "addyosmani/agent-skills"
-      }
-    },
-    "agentcairn": {
-      "source": {
-        "source": "github",
-        "repo": "ccf/agentcairn"
-      }
-    }
-  },
-  "pluginConfigs": {
-    "agentcairn@agentcairn": {
-      "options": {
-        "vault_path": "~/claude/agentcairn"
       }
     }
   }
