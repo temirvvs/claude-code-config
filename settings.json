@@ -3,20 +3,6 @@
     "defaultMode": "auto"
   },
   "skillOverrides": {},
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/scripts/auto-sync-config.sh 2>/dev/null || true",
-            "timeout": 30,
-            "statusMessage": "Syncing ~/.claude config to GitHub..."
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "warp@claude-code-warp": true,
     "ponytail@ponytail": true,

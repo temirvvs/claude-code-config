@@ -12,12 +12,13 @@ My `~/.claude` config, synced across machines.
 Everything else (`plugins/`, `skills/`, conversation history, caches, sessions) is
 gitignored — local, regenerable, or reinstallable from `settings.json`.
 
-## Auto-sync
+## Auto-sync (disabled)
 
-A `Stop` hook in `settings.json` runs `scripts/auto-sync-config.sh` after every
-Claude Code turn. It stages `settings.json`, `CLAUDE.md`, `README.md`, and itself,
-and if anything changed, commits and pushes to `origin main` automatically. A
-failed push (e.g. offline) just warns — it never blocks the session.
+This repo used to auto-commit and push on every Claude Code turn via a `Stop`
+hook running `scripts/auto-sync-config.sh`. That hook has been removed from
+`settings.json`. The script still exists but nothing calls it — sync changes
+to `origin main` manually (`git add`, `git commit`, `git push`) when you want
+them saved.
 
 ## Standing instructions (CLAUDE.md)
 

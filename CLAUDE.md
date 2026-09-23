@@ -1,6 +1,6 @@
 This is Ghaith's `~/.claude` config, synced to `git@github.com:temirvvs/claude-code-config.git`. See `README.md` for what's tracked and why.
 
-A `Stop` hook (`scripts/auto-sync-config.sh`) commits and pushes `settings.json`, `CLAUDE.md`, and `README.md` automatically after every turn. It only pushes what's already staged; it never rewrites content. Whenever a change to `settings.json` or `CLAUDE.md` changes what this repo does or how it's set up, update `README.md` to describe that change in the same turn, before the hook's next commit.
+Auto-sync is disabled — nothing commits or pushes this repo automatically. `scripts/auto-sync-config.sh` still exists but no longer runs; sync manually when needed. Whenever a change to `settings.json` or `CLAUDE.md` changes what this repo does or how it's set up, update `README.md` to describe that change in the same turn.
 
 Before installing any skill, plugin, or tool, anywhere, not just from this repo: check its source for safety (bundled hooks, network calls, executed scripts) and check whether it duplicates or overlaps with something already installed. A literal duplicate of an already-installed source (same upstream repo) gets rejected outright, no confirmation needed. A partial overlap (same territory from a different author, or two plugins sharing a skill name) gets flagged with a clear recommendation before installing; it never gets installed silently.
 
