@@ -28,3 +28,13 @@ by topic into files that each fit. Each file needs its own hook.
 No finished tool does this. `surreptakos/claude-dotfiles#154` (plugin-based, closed as
 not planned, partly working) and `mark-brannan/dotfiles#17` (spec only) cover the same
 problem.
+
+## Verified
+
+- Local: `claude -p` loaded all three files from `~/.claude/rules/`.
+- Hooks against GitHub: first fetch HTTP 200, repeat fetch HTTP 304, output byte-identical
+  to `rules/`. Without `CLAUDE_CODE_REMOTE` the hooks print nothing.
+- Cloud: a `claude --cloud` session on this repo reported all three files arrived as
+  `SessionStart:startup hook success` blocks, with no fetch failures.
+- GitHub's raw CDN sends `cache-control: max-age=300`; a pushed change took under
+  5 minutes to appear.
