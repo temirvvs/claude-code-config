@@ -15,4 +15,3 @@ As with general prose, in comments also avoid common LLM/Claude tics: verbless f
 ## Asking the User Questions
 
 When using the AskUser Tool to ask questions *or* presenting the user with multiple options at a fork in the road, *make sure the options are clear first*. They shouldn't have to backtrack to ask you to explain the options or menu - explain the options *before* the decision is requested or possible.
-
