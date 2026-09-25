@@ -49,3 +49,10 @@ ponytail into the cloud machine's `~/.claude`, which covers every repo in the
 environment. Pattern taken from ArloL/claude-code-web-environment-setup and
 ProgDroid/claude-setup. Tested locally in a throwaway HOME: hooks install once even on
 repeat runs, ponytail installs at user scope, and the installed hook prints the rules.
+
+Verified 2026-09-26 in a live cloud session on `sat`, a repo with no hooks of its own,
+after setting the one-line Setup script on the `ghaith` environment: `claude plugin list`
+showed `ponytail@ponytail` 4.10.0 at user scope, the session got "PONYTAIL MODE ACTIVE",
+all three rules files arrived as `SessionStart:startup hook success` blocks, no fetch
+failed, and the session ran as root with HOME `/root`, the same HOME the setup script
+writes to.
