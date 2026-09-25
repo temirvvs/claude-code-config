@@ -16,3 +16,6 @@ mcp-needs-auth-cache.json
 .last-cleanup
 .ponytail-*
 .DS_Store
+ide/
+paste-cache/
+plans/
