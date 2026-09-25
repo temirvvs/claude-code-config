@@ -9,8 +9,7 @@ My `~/.claude` config, synced across machines and into Claude Code cloud session
   - `response-style.md`: how replies read
   - `writing-style.md`: documents, code comments, and questions to the user
 - `CLAUDE.md`: rules about this repo itself (sync, public-repo hygiene, README upkeep)
-- `cloud-hooks.json`: the SessionStart hooks that deliver `rules/` to cloud sessions
-- `.claude/settings.json`: a copy of those hooks, so cloud sessions on this repo get the rules too
+- `cloud/setup.sh`: the cloud environment setup script (rules hooks + ponytail)
 - `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on Opus 5, `xhigh` on Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
 - `commands/`: custom slash commands (e.g. `/techdebt`)
 - `notes/`: dated notes on config changes
@@ -22,28 +21,38 @@ This repo is public. It holds no secrets or personal data.
 
 ## Cloud sessions
 
-Cloud sessions (claude.ai/code, `claude --cloud`, routines) run on a fresh clone of one
-repo and never see `~/.claude`
+Cloud sessions (claude.ai/code, `claude --cloud`, routines) run on a fresh machine that
+never sees this Mac's `~/.claude`
 ([docs](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup)).
-They do run SessionStart hooks committed in that repo's `.claude/settings.json`, and a
-SessionStart hook's output becomes context Claude sees
-([docs](https://code.claude.com/docs/en/hooks)).
+Plugins declared in a repo's settings don't load there either. Each cloud environment
+can run a setup script before Claude Code starts, and whatever it installs into that
+machine's `~/.claude` applies to every repo opened in the environment. This follows
+[ArloL/claude-code-web-environment-setup](https://github.com/ArloL/claude-code-web-environment-setup)
+and [ProgDroid/claude-setup](https://github.com/ProgDroid/claude-setup), which verified it
+against live sessions.
 
-`cloud-hooks.json` holds one hook per rules file. Each hook:
+The environment's **Setup script** field holds one line, set once:
 
-1. Exits at once unless `CLAUDE_CODE_REMOTE=true`, so local sessions, which already load `~/.claude/rules/`, skip it.
-2. Fetches the file from `raw.githubusercontent.com` with its saved ETag. If the file hasn't changed, GitHub answers `304 Not Modified` and the hook reuses its cached copy instead of downloading again.
-3. Prints the file, which Claude Code adds to context. If the fetch fails and no copy is cached, it prints a notice telling Claude to tell you.
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/temirvvs/claude-code-config/main/cloud/setup.sh)"
+```
 
-The hooks run on `startup`, `clear`, and `compact`, but not on `resume`, because a
-resumed transcript already holds the rules.
+`cloud/setup.sh` installs:
+
+- **Rules hooks**: three SessionStart hooks in the machine's `~/.claude/settings.json`, one per rules file. At each session start (and after `/clear` or compaction) each hook fetches its file from GitHub with its saved ETag. An unchanged file gets `304 Not Modified` and no download. The hook prints the file, which Claude Code adds to context. If a fetch fails with nothing cached, it prints a notice telling Claude to tell you.
+- **Ponytail**: installed at user scope from a codeload.github.com tarball, because `git clone` of another repo gets a 403 from the cloud's GitHub proxy.
+
+When changes arrive:
+
+| Change | Reaches cloud sessions |
+|---|---|
+| Edit a file in `rules/` | Next session start, within GitHub's 5-minute raw-file cache |
+| Edit `cloud/setup.sh`, or a new ponytail release | Next environment rebuild: about every 7 days, or at once when the Setup script field or allowed network hosts change |
 
 Limits:
 
 - A hook's output is capped at 10,000 characters, so each rules file must stay under that.
-- Only single-repo cloud sessions run repo hooks. Multi-repo sessions and Projects threads don't.
-- A repo gets the hooks when a session working in it merges `cloud-hooks.json` into its `.claude/settings.json` (a rule in `rules/working.md`).
-- GitHub's raw CDN caches files for up to 5 minutes, so a pushed change can take that long to reach new cloud sessions.
+- Each cloud environment needs the one line in its Setup script field.
 
 ## Auto-sync (disabled)
 
@@ -61,7 +70,6 @@ see what's on GitHub. Sync everything else to `origin main` manually.
 - Keep a `notes/` directory updated after every PR, and point the project's own `CLAUDE.md` at it.
 - Update a project's `CLAUDE.md` only when skipping the update would leave it wrong.
 - No ambiguity in features, labels, or replies. Never guess; cite sources.
-- Add the cloud hooks to each repo worked in.
 
 `rules/response-style.md` is a full prose-style guide (adapted from
 [andrewroxby/claude-style-patch](https://github.com/andrewroxby/claude-style-patch)):

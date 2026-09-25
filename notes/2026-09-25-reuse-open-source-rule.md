@@ -38,3 +38,14 @@ problem.
   `SessionStart:startup hook success` blocks, with no fetch failures.
 - GitHub's raw CDN sends `cache-control: max-age=300`; a pushed change took under
   5 minutes to appear.
+
+## 2026-09-26: switched to an environment setup script
+
+The per-repo pointer (`cloud-hooks.json` merged into each repo's `.claude/settings.json`)
+only covered repos that carried it, and couldn't deliver ponytail, because plugins
+declared in repo settings don't load in cloud sessions. Replaced it with `cloud/setup.sh`,
+run from the cloud environment's Setup script field. It installs the rules hooks and
+ponytail into the cloud machine's `~/.claude`, which covers every repo in the
+environment. Pattern taken from ArloL/claude-code-web-environment-setup and
+ProgDroid/claude-setup. Tested locally in a throwaway HOME: hooks install once even on
+repeat runs, ponytail installs at user scope, and the installed hook prints the rules.
