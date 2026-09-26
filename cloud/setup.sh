@@ -12,6 +12,7 @@
 # Everything goes into ~/.claude, so it applies to every repo in the environment:
 #   - SessionStart hooks that fetch rules/ from GitHub at each session start
 #   - the ponytail plugin at user scope
+#   - the hallmark skill at user scope
 
 set -u # no -e: a non-zero exit stops the session from starting
 
@@ -63,6 +64,17 @@ if curl -fsSL https://codeload.github.com/DietrichGebert/ponytail/tar.gz/refs/he
   claude plugin install ponytail@ponytail 2>&1 | sed 's/^/[setup]   /'
 else
   log "PONYTAIL FAILED: tarball download"
+fi
+
+# Hallmark skill (nutlope/hallmark), same tarball route as ponytail.
+
+dir=~/.claude/skills/hallmark
+rm -rf "$dir" && mkdir -p "$dir"
+if curl -fsSL https://codeload.github.com/nutlope/hallmark/tar.gz/refs/heads/main \
+  | tar -xz --strip-components=3 -C "$dir" hallmark-main/skills/hallmark; then
+  log "hallmark skill installed"
+else
+  log "HALLMARK FAILED: tarball download"
 fi
 
 log "plugins:"

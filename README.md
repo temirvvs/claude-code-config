@@ -9,7 +9,7 @@ My `~/.claude` config, synced across machines and into Claude Code cloud session
   - `response-style.md`: how replies read
   - `writing-style.md`: documents, code comments, and questions to the user
 - `CLAUDE.md`: rules about this repo itself (sync, public-repo hygiene, README upkeep)
-- `cloud/setup.sh`: the cloud environment setup script (rules hooks + ponytail)
+- `cloud/setup.sh`: the cloud environment setup script (rules hooks, ponytail, hallmark)
 - `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on Opus 5, `xhigh` on Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
 - `commands/`: custom slash commands (e.g. `/techdebt`)
 - `notes/`: dated notes on config changes
@@ -41,6 +41,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/temirvvs/claude-code-con
 
 - **Rules hooks**: three SessionStart hooks in the machine's `~/.claude/settings.json`, one per rules file. At each session start (and after `/clear` or compaction) each hook fetches its file from GitHub with its saved ETag. An unchanged file gets `304 Not Modified` and no download. The hook prints the file, which Claude Code adds to context. If a fetch fails with nothing cached, it prints a notice telling Claude to tell you.
 - **Ponytail**: installed at user scope from a codeload.github.com tarball, because `git clone` of another repo gets a 403 from the cloud's GitHub proxy.
+- **Hallmark**: the [nutlope/hallmark](https://github.com/nutlope/hallmark) design skill, extracted from the same kind of tarball into `~/.claude/skills/hallmark`.
 
 When changes arrive:
 
@@ -69,6 +70,7 @@ see what's on GitHub. Sync everything else to `origin main` manually.
 - Check any skill, plugin, or tool for safety and overlap before installing it, and keep the install log current.
 - Keep a `notes/` directory updated after every PR, and point the project's own `CLAUDE.md` at it.
 - Update a project's `CLAUDE.md` only when skipping the update would leave it wrong.
+- When building UI, Hallmark owns visual direction and frontend-ui-engineering owns implementation and accessibility. The project's own design system beats both.
 - No ambiguity in features, labels, or replies. Never guess; cite sources.
 
 `rules/response-style.md` is a full prose-style guide (adapted from
@@ -84,4 +86,9 @@ git clone git@github.com:temirvvs/claude-code-config.git ~/.claude
 ```
 
 Then launch Claude Code. It reinstalls the plugins listed in `settings.json` from
-their marketplaces automatically.
+their marketplaces automatically. Standalone skills live in the gitignored `skills/`,
+so install Hallmark by hand (re-run to update):
+
+```sh
+mkdir -p ~/.claude/skills/hallmark && curl -fsSL https://codeload.github.com/nutlope/hallmark/tar.gz/refs/heads/main | tar -xz --strip-components=3 -C ~/.claude/skills/hallmark hallmark-main/skills/hallmark
+```

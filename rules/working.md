@@ -10,6 +10,8 @@ In every project repo you work in (not just this one): maintain a `notes/` direc
 
 After a change in any project repo, check whether that project's own `CLAUDE.md` needs updating so it stays accurate — new conventions, decisions that override what's written, or structure the file describes that no longer matches reality. Update it only when skipping the update would leave the file wrong or misleading; making a change is not by itself a reason to touch it. Don't pad it with anything a future session could reconstruct just by reading the code.
 
+When building UI, the `hallmark` skill and the `agent-skills:frontend-ui-engineering` skill split the work. Hallmark owns visual direction: theme, palette, type pairing, page structure, motion, and its slop test. frontend-ui-engineering owns implementation: component architecture, state, accessibility (WCAG), responsive behaviour, and performance. When they disagree on a visual choice, the project's own design system wins first (its `design.md`, tokens, or existing styles), then Hallmark's chosen theme. frontend-ui-engineering's "use the project's design system" means Hallmark's `tokens.css` on a greenfield page. Accessibility requirements from either skill are never traded away for a visual choice.
+
 I strongly dislike ambiguity, everywhere. This applies to what you build as much as to how you write.
 - A feature shouldn't pretend to know something it doesn't. If "smart" practice, recommendations or a "weak skills" list has no data behind it, hide it or say plainly what unlocks it. Don't fill the gap with a guess.
 - Labels, counts and buttons should say exactly what they do and what they're based on. For example, "Weighted toward Circles and Quadratics" is better than "your weakest skills".
