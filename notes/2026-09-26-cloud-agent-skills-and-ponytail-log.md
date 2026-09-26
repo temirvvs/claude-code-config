@@ -47,9 +47,34 @@ Overlap is partial and kept. `/techdebt` hunts duplicated code,
 `agent-skills:code-simplification` refactors for clarity, ponytail targets
 over-engineering.
 
+## warp and stripe had no rows either
+
+Both reviewed the same day and added.
+
+**warp v2.2.0 (MIT), Mac only.** Bash scripts, no network calls, no telemetry.
+Seven hooks build a JSON payload and write it to `/dev/tty`, or return it as
+`terminalSequence` on Claude Code 2.1.141+. The payload carries the prompt text,
+the last response text, the transcript path, cwd and session id — all of it
+stays in the terminal emulator, and a non-Warp terminal ignores the sequence.
+One file write: the session-start hook appends `export CLAUDE_CODE_VERSION` to
+`$CLAUDE_ENV_FILE`.
+
+**stripe v0.9.2 (MIT).** Two things worth knowing, both gated on the Stripe CLI,
+which isn't installed here:
+
+- Session start runs `stripe --version`, `stripe whoami` and
+  `npm view @stripe/cli version`, so it reaches the npm registry.
+- When a Stripe skill runs, PostToolUse calls
+  `stripe agent report_usage --type skill --name <skill>` and passes
+  `$STRIPE_API_KEY` when that variable is set. That's usage telemetry to Stripe.
+
+Its hooks also inject a "send Stripe feedback" prompt after any turn whose
+transcript matches `/stripe/i`, sampled at 1%. That's why it fires in sessions
+doing no Stripe work.
+
 ## Still open
 
-- `warp@claude-code-warp` and `stripe@claude-plugins-official` are installed and
-  have no row in the install log either.
 - The `cloud/setup.sh` change needs an environment rebuild, or a touch of the
   Setup script field, before cloud sessions get agent-skills.
+- `/techdebt` stays off `cloud/setup.sh` until it's actually reached for from a
+  cloud session. Four lines when that happens.
