@@ -90,6 +90,20 @@ prompt to unrelated sessions. One command re-enables it when Stripe work starts.
   cloud session. Four lines when that happens.
 - `y2k` is parked. Nothing in this config depends on it.
 
+## godot-ai MCP was unlogged too
+
+A sweep of `~/.claude.json` found a third unlogged install: the `godot-ai`
+stdio MCP server, launched by `uvx --from godot-ai==4.2.3` at each session.
+Row added.
+
+Checked from sources, not by reading the server code. PyPI lists 4.2.3 as
+current, the repo (`hi-godot/godot-ai`) is MIT with 2.6k stars and active, and
+every pinned dependency resolves to a real current package. That last check
+mattered: the pins look wrong against older knowledge (`starlette==1.6.0`,
+`mcp==2.2.0`, `httpx2`, `httpcore2`), and they're all legitimate — httpx2 and
+httpcore2 are Tom Christie's, published under pydantic in May 2026, and
+starlette is on 1.x now. Don't flag those as typosquats on sight.
+
 ## Effort levels settled
 
 Opus 5 and Opus 5.5 both run at `high`, committed here with README line 13
