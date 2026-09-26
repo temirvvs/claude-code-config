@@ -10,7 +10,7 @@ My `~/.claude` config, synced across machines and into Claude Code cloud session
   - `writing-style.md`: documents, code comments, and questions to the user
 - `CLAUDE.md`: rules about this repo itself (sync, public-repo hygiene, README upkeep)
 - `cloud/setup.sh`: the cloud environment setup script (rules hooks, ponytail, agent-skills, hallmark)
-- `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on Opus 5, `xhigh` on Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
+- `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on both Opus 5 and Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
 - `commands/`: custom slash commands (e.g. `/techdebt`)
 - `notes/`: dated notes on config changes
 

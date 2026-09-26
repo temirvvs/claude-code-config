@@ -7,7 +7,7 @@
   "enabledPlugins": {
     "warp@claude-code-warp": true,
     "ponytail@ponytail": true,
-    "stripe@claude-plugins-official": true,
+    "stripe@claude-plugins-official": false,
     "agent-skills@addy-agent-skills": true,
     "obsidian@obsidian-skills": true,
     "github@claude-plugins-official": true
@@ -43,7 +43,7 @@
       "effortLevel": "high"
     },
     "claude-opus-5-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     }
   },
   "autoMode": {

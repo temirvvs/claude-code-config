@@ -72,9 +72,27 @@ Its hooks also inject a "send Stripe feedback" prompt after any turn whose
 transcript matches `/stripe/i`, sampled at 1%. That's why it fires in sessions
 doing no Stripe work.
 
+The npm call is gated on the CLI. `getStripeCliGuidance` (`scripts/cli.mjs:82`)
+returns at its first branch when `stripe --version` fails with `ENOENT`, ahead
+of `npm view` and `stripe whoami`. Checked by running the session-start hook
+twice with a stub `npm` on `PATH`: uncalled with no `stripe`, called once a stub
+`stripe` was there.
+
+**Disabled 2026-09-26** (`claude plugin disable stripe@claude-plugins-official`).
+Nothing here uses the skills, and it was adding a startup hook and a feedback
+prompt to unrelated sessions. One command re-enables it when Stripe work starts.
+
 ## Still open
 
 - The `cloud/setup.sh` change needs an environment rebuild, or a touch of the
   Setup script field, before cloud sessions get agent-skills.
 - `/techdebt` stays off `cloud/setup.sh` until it's actually reached for from a
   cloud session. Four lines when that happens.
+- `y2k` is parked. Nothing in this config depends on it.
+
+## Effort levels settled
+
+Opus 5 and Opus 5.5 both run at `high`, committed here with README line 13
+rewritten to match. Cloud sessions don't read this file — `cloud/setup.sh`
+writes only the rules hooks and the plugins — so a cloud session's effort level
+is its own default, not this setting.
