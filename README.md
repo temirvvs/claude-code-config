@@ -12,6 +12,7 @@ My `~/.claude` config, synced across machines and into Claude Code cloud session
 - `cloud/setup.sh`: the cloud environment setup script (rules hooks, ponytail, agent-skills, hallmark)
 - `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on both Opus 5 and Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
 - `commands/`: custom slash commands (e.g. `/techdebt`)
+- `install-log.md`: everything installed, with source, purpose and safety review
 - `notes/`: dated notes on config changes
 
 Everything else (`plugins/`, `skills/`, conversation history, caches, sessions, pastes, plans) is
