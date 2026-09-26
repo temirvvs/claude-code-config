@@ -9,7 +9,7 @@ My `~/.claude` config, synced across machines and into Claude Code cloud session
   - `response-style.md`: how replies read
   - `writing-style.md`: documents, code comments, and questions to the user
 - `CLAUDE.md`: rules about this repo itself (sync, public-repo hygiene, README upkeep)
-- `cloud/setup.sh`: the cloud environment setup script (rules hooks, ponytail, hallmark)
+- `cloud/setup.sh`: the cloud environment setup script (rules hooks, ponytail, agent-skills, hallmark)
 - `settings.json`: enabled plugins + marketplace sources, default permission mode (`auto`), default model (`opus`), per-model effort levels (`high` on Opus 5, `xhigh` on Opus 5.5), and an `autoMode.environment` description for the auto-mode classifier
 - `commands/`: custom slash commands (e.g. `/techdebt`)
 - `notes/`: dated notes on config changes
@@ -40,7 +40,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/temirvvs/claude-code-con
 `cloud/setup.sh` installs:
 
 - **Rules hooks**: three SessionStart hooks in the machine's `~/.claude/settings.json`, one per rules file. At each session start (and after `/clear` or compaction) each hook fetches its file from GitHub with its saved ETag. An unchanged file gets `304 Not Modified` and no download. The hook prints the file, which Claude Code adds to context. If a fetch fails with nothing cached, it prints a notice telling Claude to tell you.
-- **Ponytail**: installed at user scope from a codeload.github.com tarball, because `git clone` of another repo gets a 403 from the cloud's GitHub proxy.
+- **Ponytail** and **agent-skills**: both installed at user scope by `install_plugin`, which downloads a codeload.github.com tarball, rewrites each plugin's `source` in `.claude-plugin/marketplace.json` to `./`, and adds the directory as a local marketplace. The tarball route exists because `git clone` of another repo gets a 403 from the cloud's GitHub proxy; the rewrite exists because a marketplace entry pointing at a github repo sends the install back through that proxy. agent-skills is here because `rules/working.md` hands UI implementation and accessibility to its `frontend-ui-engineering` skill.
 - **Hallmark**: the [nutlope/hallmark](https://github.com/nutlope/hallmark) design skill, extracted from the same kind of tarball into `~/.claude/skills/hallmark`.
 
 When changes arrive:
@@ -48,7 +48,7 @@ When changes arrive:
 | Change | Reaches cloud sessions |
 |---|---|
 | Edit a file in `rules/` | Next session start, within GitHub's 5-minute raw-file cache |
-| Edit `cloud/setup.sh`, or a new ponytail release | Next environment rebuild: about every 7 days, or at once when the Setup script field or allowed network hosts change |
+| Edit `cloud/setup.sh`, or a new ponytail or agent-skills release | Next environment rebuild: about every 7 days, or at once when the Setup script field or allowed network hosts change |
 
 Limits:
 

@@ -51,20 +51,35 @@ else
   log "RULES HOOKS FAILED: could not update $settings"
 fi
 
-# Ponytail plugin.
+# Plugins.
 #
 # A git clone of another GitHub repo gets a 403 from the cloud's GitHub proxy,
-# so fetch a codeload tarball and add it as a local marketplace.
+# so fetch a codeload tarball and add it as a local marketplace. The jq line
+# repoints each plugin at the extracted directory, because a marketplace entry
+# whose source is a github repo sends the install back through the proxy.
 
-dir=~/.claude-cloud/ponytail
-rm -rf "$dir" && mkdir -p "$dir"
-if curl -fsSL https://codeload.github.com/DietrichGebert/ponytail/tar.gz/refs/heads/main \
-  | tar -xz --strip-components=1 -C "$dir"; then
+install_plugin() { # <github repo> <plugin@marketplace>
+  dir=~/.claude-cloud/${2%@*}
+  rm -rf "$dir" && mkdir -p "$dir"
+  if ! curl -fsSL "https://codeload.github.com/$1/tar.gz/refs/heads/main" \
+    | tar -xz --strip-components=1 -C "$dir"; then
+    log "PLUGIN FAILED: $2 tarball download"
+    return
+  fi
+  m="$dir/.claude-plugin/marketplace.json"
+  if jq '.plugins |= map(.source = "./")' "$m" > "$m.new"; then
+    mv "$m.new" "$m"
+  else
+    rm -f "$m.new"
+    log "PLUGIN FAILED: $2 marketplace.json rewrite"
+    return
+  fi
   claude plugin marketplace add "$dir" 2>&1 | sed 's/^/[setup]   /'
-  claude plugin install ponytail@ponytail 2>&1 | sed 's/^/[setup]   /'
-else
-  log "PONYTAIL FAILED: tarball download"
-fi
+  claude plugin install "$2" 2>&1 | sed 's/^/[setup]   /'
+}
+
+install_plugin DietrichGebert/ponytail ponytail@ponytail
+install_plugin addyosmani/agent-skills agent-skills@addy-agent-skills
 
 # Hallmark skill (nutlope/hallmark), same tarball route as ponytail.
 
